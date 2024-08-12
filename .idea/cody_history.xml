@@ -16,6 +16,19 @@
             </list>
           </chats>
         </AccountData>
+        <AccountData>
+          <accountId value="VXNlcjo1MjE1Mjk=" />
+          <chats>
+            <list>
+              <chat>
+                <internalId value="935e584a-95cd-4100-a963-a3aadd5ab017" />
+              </chat>
+              <chat>
+                <internalId value="b86baff9-1c71-42f7-a608-5ac357216124" />
+              </chat>
+            </list>
+          </chats>
+        </AccountData>
       </list>
     </accountData>
   </component>

@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import Main from "./components/Main";
 
 function App() {
     return (
         <div className="App">
-            <h1 className="text-red-500 text-2xl">vsfbfeb</h1>
+          <Main/>
         </div>
     );
 }
