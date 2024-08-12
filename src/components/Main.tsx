@@ -1,10 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import "./font.css";
-import { Card, Col, FormProps, Image, Row } from "antd";
-import { FaRegCreditCard } from "react-icons/fa";
-import { BsCreditCard2FrontFill } from "react-icons/bs";
-import { Button, Form, Input } from 'antd';
+import {Col, FormProps, Row} from "antd";
+import {FaRegCreditCard} from "react-icons/fa";
+import {BsCreditCard2FrontFill} from "react-icons/bs";
+import {Button, Form, Input} from 'antd';
+import Header from "./Header";
 
 const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
     console.log('Success:', values);
@@ -22,7 +23,7 @@ type FieldType = {
 
 function AddCardForm() {
     return (
-        <div className={"px-20 py-10 mt-[-350px]"}>
+        <div className={"px-20 py-10"}>
             <div className={"text-left mt-5"}>
                 <h1 className={"font-bold text-3xl"}>Add New Card</h1>
                 <span className={"text-1xl"}>Do more with unlimited blocks, files, automations & integrations.</span>
@@ -30,40 +31,40 @@ function AddCardForm() {
             <Form
                 className={"mt-5"}
                 name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
-                style={{ maxWidth: 600 }}
-                initialValues={{ remember: true }}
+                labelCol={{span: 8}}
+                wrapperCol={{span: 16}}
+                style={{maxWidth: 600}}
+                initialValues={{remember: true}}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
                 <Form.Item
                     name="username"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{required: true, message: 'Please input your username!'}]}
                 >
                     <span className={"text-left"}>Who is</span>
-                    <Input />
+                    <Input/>
                 </Form.Item>
 
                 <Form.Item
                     name="text"
-                    rules={[{ required: true, message: 'Please input your payment details!' }]}
+                    rules={[{required: true, message: 'Please input your payment details!'}]}
                 >
                     <span>Payment Details</span>
-                    <Input className={"mb-2"} />
-                    <Input className={"mb-2"} />
-                    <Input className={"mb-2"} />
+                    <Input className={"mb-2"}/>
+                    <Input className={"mb-2"}/>
+                    <Input className={"mb-2"}/>
                 </Form.Item>
 
                 <div className={"flex gap-[50px]"}>
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                    <Form.Item wrapperCol={{offset: 8, span: 16}}>
                         <Button className={"bg-amber-50 w-[150px]"} htmlType="submit">
                             Cancel
                         </Button>
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                    <Form.Item wrapperCol={{offset: 8, span: 16}}>
                         <Button className={"bg-amber-50 w-[150px]"} htmlType="submit">
                             Submit
                         </Button>
@@ -75,91 +76,61 @@ function AddCardForm() {
     );
 }
 
- function MyCards() {
+export function MyCards({open, setOpen}: { open: boolean, setOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
+    const images: string[] = [
+        "/Group.png",
+        "/Group.png",
+        "/Group%20(2).png",
+        "/Group%20(3).png",
+        "/Group.png",
+        "/Group%20(3).png",
+        "/Group%203.png",
+        "/Group%204.png"
+    ]
+
     return (
-        <div className={"px-20 py-10 flex "}>
-            <h1 className={"font-bold text-3xl  text-center mt-[-350px]"}>My Cards</h1>
+        <div className={"px-20 py-10 flex flex-col"}>
+            <Header open={open} setOpen={setOpen}/>
+            <h1 className={"font-bold text-3xl  text-center "}>My Cards</h1>
             <div className={"flex flex-col mt-5 gap-[30px]"}>
                 <Row gutter={16}>
-                    <Col className="gutter-row" span={6}>
-                        <img src="/Group.png" alt="sdasd" width={"250px"}/>
+                    {images.map((i, index) => (
+                        <Col key={index} xs={24} sm={24} md={12} lg={8}>
+                            <div className="p-3">
+                                <img src={i} alt="sdasd"/>
+                            </div>
+                        </Col>
+                    ))}
+                </Row>
+            </div>
+        </div>
+    )
+        ;
+}
 
+function Main({open, setOpen}: { open: boolean, setOpen: React.Dispatch<React.SetStateAction<boolean>> }) {
+    const bgImg = 'https://s3-alpha-sig.figma.com/img/5d4e/9572/d52f550b3b5989cf96d343f41333a3ab?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=elcq~KpzQ7q3~e4vLrIn50O5qXrCA92ovNeJp0V0hDXp2TcdI~WIF-gBgROBktmQd31ShVWxFX92WdXb2FUvrOl~HNfcHuBX~9OZQ61lcMa0dL-lUrlyXR0WgiYt8civEp69XuRWLKECl~oz1i5FOXI1~C6FIpTpGURyA6~9pIyHZWSm4WbquBRlaCPAyGtBMEmQOg-CXT6heJVqaH4kV6rrmfw~F8mQBEQIXZ017yY40ihXqnAPpOywGrb9s~6W8i5TVe7HCoPBntkMR3r7TEErt7b36SLKfgYL2so1oJE587xpH-cO24huDb4G9lTcKNtjyuKLjTK9pvdBSvC8Lg__'
+
+    return (
+        <>
+            <div className="App w-[100%] min-h-[100vh]">
+                <Row>
+                    <Col xs={24} sm={24} md={12} lg={12}>
+                        <div className={"px-10 py-10"}>
+                            <div className={"cards mt-5"}>
+                                <Header open={open} setOpen={setOpen}/>
+                            </div>
+                            <AddCardForm/>
+                        </div>
                     </Col>
-                    <Col className="gutter-row" span={6}>
-                        <img src="/Group.png" alt="sdasd" width={"250px"}/>
-                    </Col>
-                    <Col className="gutter-row" span={6}>
-                        <img src="/Group%20(2).png" alt="sdasd" width={"250px"}/>
-                    </Col>
-                    <Col className="gutter-row" span={6}>
-                        <img src="/Group%20(3).png" alt="sdasd" width={"250px"}/>
-                    </Col>
-                    <Col className="gutter-row" span={6}>
-                        <img src="/Group.png" alt="sdasd" width={"250px"}/>
-                    </Col>
-                    <Col className="gutter-row" span={6}>
-                        <img src="/Group%20(3).png" alt="sdasd" width={"250px"}/>
-                    </Col>
-                    <Col className="gutter-row" span={6}>
-                        <img src="/Group%203.png" alt="sdasd" width={"250px"}/>
-                    </Col>
-                    <Col className="gutter-row" span={6}>
-                        <img src="/Group%204.png" alt="sdasd" width={"250px"}/>
+                    <Col xs={24} sm={24} md={12} lg={12}>
+                        <div className={"w-[100%] min-h-[100vh]"} style={{backgroundImage: `url(${bgImg})`}}></div>
                     </Col>
                 </Row>
-
-
-
             </div>
-
-
-
-        </div>
-    );
- }
-
-function Main() {
-    return (
-        <Router>
-            <div className="App mt-10 flex w-full">
-                <Col span={12}>
-                    <div className={"px-20 py-10"}>
-                        <Image />
-                        <div className={"cards mt-5"}>
-                            <Row gutter={16} className={"text-left"}>
-                                <Col span={8}>
-                                    <Link to="/add-card">
-                                        <Card title="" className={"bg-purple-300 cursor-pointer"} bordered={false}>
-                                            <FaRegCreditCard />
-                                            New credit card
-                                        </Card>
-                                    </Link>
-                                </Col>
-                                <Col span={8}>
-                                    <Link to="/my-cards">
-                                        <Card title="" className={`cursor-pointer mb-[-100px]`} bordered={false}>
-                                            <BsCreditCard2FrontFill />
-                                            My cards
-                                        </Card>
-                                    </Link>
-                                </Col>
-                                </Row>
-                        </div>
-                    </div>
-                </Col>
-                <div>
-                    <Image
-                        src={"https://s3-alpha-sig.figma.com/img/5d4e/9572/d52f550b3b5989cf96d343f41333a3ab?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=elcq~KpzQ7q3~e4vLrIn50O5qXrCA92ovNeJp0V0hDXp2TcdI~WIF-gBgROBktmQd31ShVWxFX92WdXb2FUvrOl~HNfcHuBX~9OZQ61lcMa0dL-lUrlyXR0WgiYt8civEp69XuRWLKECl~oz1i5FOXI1~C6FIpTpGURyA6~9pIyHZWSm4WbquBRlaCPAyGtBMEmQOg-CXT6heJVqaH4kV6rrmfw~F8mQBEQIXZ017yY40ihXqnAPpOywGrb9s~6W8i5TVe7HCoPBntkMR3r7TEErt7b36SLKfgYL2so1oJE587xpH-cO24huDb4G9lTcKNtjyuKLjTK9pvdBSvC8Lg__"}
-                        width={500} height={500} />
-                </div>
-            </div>
-
-            <Routes>
-                <Route path="/add-card" element={<AddCardForm />} />
-                <Route path="/my-cards" element={<MyCards />} />
-            </Routes>
-        </Router>
-    );
+        </>
+    )
+        ;
 }
 
 export default Main;
