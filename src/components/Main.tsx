@@ -23,13 +23,13 @@ type FieldType = {
 
 function AddCardForm() {
     return (
-        <div className={"px-20 py-10"}>
+        <div className={"px-20 py-8"}>
             <div className={"text-left mt-5"}>
                 <h1 className={"font-bold text-3xl"}>Add New Card</h1>
                 <span className={"text-1xl"}>Do more with unlimited blocks, files, automations & integrations.</span>
             </div>
             <Form
-                className={"mt-5"}
+                className={""}
                 name="basic"
                 labelCol={{span: 8}}
                 wrapperCol={{span: 16}}
@@ -70,7 +70,6 @@ function AddCardForm() {
                         </Button>
                     </Form.Item>
                 </div>
-                <span>By providing your card information, you allow us to charge your card for future payment in accordance with their terms.</span>
             </Form>
         </div>
     );
@@ -124,7 +123,7 @@ function Main({open, setOpen}: { open: boolean, setOpen: React.Dispatch<React.Se
                         </div>
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={12}>
-                        <div className={"w-[100%] min-h-[100vh]"} style={{backgroundImage: `url(${bgImg})`}}></div>
+                        <div className={"w-[100%] min-h-[100vh] bg-cover bg-center"} style={{backgroundImage: `url(${bgImg})`}}></div>
                     </Col>
                 </Row>
             </div>
