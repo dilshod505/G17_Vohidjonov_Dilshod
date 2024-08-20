@@ -1,76 +1,52 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import "./font.css";
-import {Col, FormProps, Row} from "antd";
-import {FaRegCreditCard} from "react-icons/fa";
-import {BsCreditCard2FrontFill} from "react-icons/bs";
-import {Button, Form, Input} from 'antd';
+import {Col, FormProps, Image, Row, Space} from "antd";
+import {Input} from 'antd';
 import Header from "./Header";
 
-const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-    console.log('Success:', values);
-};
-
-const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-};
-
-type FieldType = {
-    username?: string;
-    password?: string;
-    remember?: string;
-};
 
 function AddCardForm() {
+
+
+    
     return (
-        <div className={"px-20 py-8"}>
-            <div className={"text-left mt-5"}>
-                <h1 className={"font-bold text-3xl"}>Add New Card</h1>
-                <span className={"text-1xl"}>Do more with unlimited blocks, files, automations & integrations.</span>
+        <div className={"px-5 py-2"}>
+                <h1 className='text-[40px]'>Add New Card</h1>
+                <span className={"text-gray-400"}>Do more with unlimited blocks, files, automations & integrations.</span>
+        <div>
+        <Space direction="vertical" style={{ width: '100%', marginTop: 36 }}>
+                    <Input 
+                        placeholder="Ism kiritish" 
+                        // value={name} 
+                        // onChange={(e) => setName(e.target.value)} 
+                    />
+                    <Input 
+                        placeholder="Karta turi" 
+                        // value={cardType} 
+                        // onChange={(e) => setCardType(e.target.value)} 
+                    />
+                    <Input 
+                        placeholder="Karta rasm URL" 
+                        // value={imgUrl} 
+                        // onChange={(e) => setImgUrl(e.target.value)} 
+                    />
+                </Space>
+                <Col xs={24} sm={24} md={12} lg={12} className={"mt-5"}>
+         <div className='flex items-center justify-center gap-5'>
+            <div>
+            <button type={"submit"} className='bg-neutral-100 w-[150px] text-white px-10 py-4 rounded-[16px] mt-5'>
+        <span className={"text-black"}>Cencel</span>
+        </button>
             </div>
-            <Form
-                className={""}
-                name="basic"
-                labelCol={{span: 8}}
-                wrapperCol={{span: 16}}
-                style={{maxWidth: 600}}
-                initialValues={{remember: true}}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                autoComplete="off"
-            >
-                <Form.Item
-                    name="username"
-                    rules={[{required: true, message: 'Please input your username!'}]}
-                >
-                    <span className={"text-left"}>Who is</span>
-                    <Input/>
-                </Form.Item>
+            <div>
+            <button type={"submit"} className='border-violet-400 w-[150px] bg-violet-500 text-white px-10 py-4 rounded-[16px] mt-5'>
+        <span className={"text-white"}>Add Card</span>
+        </button>
+            </div>
+         </div>
+                </Col>
+        </div>
 
-                <Form.Item
-                    name="text"
-                    rules={[{required: true, message: 'Please input your payment details!'}]}
-                >
-                    <span>Payment Details</span>
-                    <Input className={"mb-2"}/>
-                    <Input className={"mb-2"}/>
-                    <Input className={"mb-2"}/>
-                </Form.Item>
-
-                <div className={"flex gap-[50px]"}>
-                    <Form.Item wrapperCol={{offset: 8, span: 16}}>
-                        <Button className={"bg-amber-50 w-[150px]"} htmlType="submit">
-                            Cancel
-                        </Button>
-                    </Form.Item>
-
-                    <Form.Item wrapperCol={{offset: 8, span: 16}}>
-                        <Button className={"bg-amber-50 w-[150px]"} htmlType="submit">
-                            Submit
-                        </Button>
-                    </Form.Item>
-                </div>
-            </Form>
         </div>
     );
 }
@@ -90,13 +66,13 @@ export function MyCards({open, setOpen}: { open: boolean, setOpen: React.Dispatc
     return (
         <div className={"px-20 py-10 flex flex-col"}>
             <Header open={open} setOpen={setOpen}/>
-            <h1 className={"font-bold text-3xl  text-center "}>My Cards</h1>
+            <h1 className={"font-bold text-3xl text-center mb-5 mt-5"}>My Cards</h1>
             <div className={"flex flex-col mt-5 gap-[30px]"}>
                 <Row gutter={16}>
                     {images.map((i, index) => (
                         <Col key={index} xs={24} sm={24} md={12} lg={8}>
                             <div className="p-3">
-                                <img src={i} alt="sdasd"/>
+                                <Image src={i} alt="sdasd"/>
                             </div>
                         </Col>
                     ))}
